@@ -77,7 +77,7 @@ namespace Drawing
             #region Context Menu
             drawing.ContextMenuStrip = ctxMenu;
             ToolStripMenuItem cancel_tool = new ToolStripMenuItem("Cancel");
-            ToolStripMenuItem close_tool = new ToolStripMenuItem("Close");
+            ToolStripMenuItem close_tool = new ToolStripMenuItem("ClosePolygon"); // завершить создание полигона
             ctxMenu.Items.AddRange(new[] {cancel_tool,close_tool});            
             cancel_tool.Click += (o, e) => CancelAll();
             close_tool.Click += (o, e) =>
