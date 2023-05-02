@@ -10,7 +10,7 @@ namespace Drawing.Models
     {
         public double X { get; private set; }
         public double Y { get; private set; }
-        public double Z { get; private set; }
+        //public double Z { get; private set; }
         /// <summary>
         /// Takes vectors value
         /// </summary>
