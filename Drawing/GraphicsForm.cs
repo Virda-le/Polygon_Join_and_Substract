@@ -125,30 +125,13 @@ namespace Drawing
                 {
                     polygons.Clear();
                     polygons.Add(res);
-                }
-                    //entity.Add(res);
-                
+                    drawing.Refresh();
+                    MessageBox.Show("Square = " + res.Square.ToString());
+                }                    
             }
             else
-                MessageBox.Show("Select 2 polygon");
-            //if (selected.Count>0)
-            //{
-            //    var ls = selected.Where(en => en.Type == EntityType.Polygon).ToList();
-                
-            //    if (ls.Count >= 2)
-            //    {
-            //        Polygon p1 = (Polygon)ls[0];
-            //        Polygon p2 = (Polygon)ls[1];
-            //        Polygon res = p1.Substract(p2);
-            //        if (res != null)
-            //            entity.Add(res);
-            //    }
-            //    else
-            //        MessageBox.Show("Select 2 polygon");
-            //}
-                
-                
-
+                MessageBox.Show("Draw 2 polygon");
+            
         }
 
         private void BtnJoin_Click(object sender, EventArgs e)
@@ -162,12 +145,14 @@ namespace Drawing
                 {
                     polygons.Clear();
                     polygons.Add(res);
+                    drawing.Refresh();
+                    MessageBox.Show("Square = " + res.Square.ToString());
                 }
                     //entity.Add(res);
                 
             }
             else
-                MessageBox.Show("Select 2 polygon");
+                MessageBox.Show("Draw 2 polygon");
             //if (selected.Count > 0)
             //{
             //    var ls = selected.Where(en => en.Type == EntityType.Polygon).ToList();

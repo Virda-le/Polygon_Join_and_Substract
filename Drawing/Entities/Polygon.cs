@@ -226,6 +226,7 @@ namespace Drawing.Entities
         public Polygon Join(Polygon subP)
         {
             Polygon polygon = null;
+            int count = 0;
             List<Point2D> points = new List<Point2D>();
 
             for (int c = 0; c < Sides.Length; c++)
@@ -234,21 +235,23 @@ namespace Drawing.Entities
 
                 if (!subP.IsInside(side1.P1)) //если точка снаружи добавляем ее в конец списка
                     points.Add(side1.P1);
-                List<Point2D> temp = CrossAndOutsidePoint(c, subP);
+                List<Point2D> temp = CrossAndOutsidePoint(c, subP,out count);
                 if (temp.Count > 0)
                     points.AddRange(temp); //добавляем в конец списка цепочку точек пересечения и/или внешних точек
 
             }
             if (points.Count > 0) //если пересекаются образуем новый полигон, иначе возвращаем null
                 polygon = new Polygon(points.ToArray());
-            if (polygon == this) return null; // no cross
+            if (count == 0) 
+                return null; // no cross
             return polygon;
         }
-        private List<Point2D> CrossAndOutsidePoint(int idx, Polygon subP)
+        private List<Point2D> CrossAndOutsidePoint(int idx, Polygon subP,out int count)
         {
             List<Point2D> result = new List<Point2D>();
             List<List<Point2D>> temp = new List<List<Point2D>>();
             Line side1 = Sides[idx];
+            count = 0;
             for (int k = 0; k < subP.Sides.Length; k++)
             {
                 Line side2 = subP.Sides[k];
@@ -257,7 +260,7 @@ namespace Drawing.Entities
                 if (Parametric.CrossPoint(side1, side2, out Point2D cross)) //проверка на пересечение
                 {
                     temp.Add(new List<Point2D> { cross });  //новая цепочка точек                 
-
+                    count = count + 1;
                     int n = k;
 
                     //цепочка внешних точек после пересечения
